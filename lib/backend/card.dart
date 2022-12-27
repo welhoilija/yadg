@@ -7,17 +7,21 @@ class Card {
 
   late String emoji;
   late String text;
+
+  bool? punishment;
+
   late Player player1;
   late Player? player2;
 
-  Card(Map<String, dynamic> json, List<Player> players) {
-    emoji = json['emoji'];
-    text = json['text'];
+  Card(this.emoji, this.text);
 
+  Card.withPlayers(
+      this.emoji, this.text, List<Player> players, bool punishment) {
     player1 = players[0];
     if (players.length > 1) {
       player2 = players[1];
     }
+    punishment = punishment;
   }
 
   String getFormattedText() {

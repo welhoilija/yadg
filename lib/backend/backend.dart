@@ -1,6 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
+
+import 'package:yadg/backend/data/cards.dart';
+import 'package:yadg/backend/data/punishcards.dart';
 
 import 'card.dart';
 import 'player.dart';
@@ -11,37 +12,16 @@ void main() {
 }
 
 class Backend {
-  // Add players with this
+  final Random rand = Random();
 
   late List<Player> players;
-  late List<dynamic> cards;
-  late List<dynamic> punishCards;
+
+  // List of all cards, without players!
+  final List<Card> cards = getCards();
+  final List<Card> punishCards = getPunishCards();
 
   Backend(List<String> array) {
-    fetchCards();
-    fetchPunishCards();
     players = array.map((str) => Player(str)).toList();
-  }
-
-  // Function to fetch the JSON file
-  void fetchCards() {
-    final file = File('./cards.json');
-    if (file.existsSync()) {
-      final contents = file.readAsStringSync();
-      cards = jsonDecode(contents);
-    } else {
-      throw Exception('Cards file not found');
-    }
-  }
-
-  void fetchPunishCards() {
-    final file = File('./punishcards.json');
-    if (file.existsSync()) {
-      final contents = file.readAsStringSync();
-      punishCards = jsonDecode(contents);
-    } else {
-      throw Exception('Cards file not found');
-    }
   }
 
   Map<String, Map<String, int>> getCardCounts() {
@@ -55,7 +35,7 @@ class Backend {
     return counts;
   }
 
-  List<Player> getPlayers() {
+  List<Player> getRandomPlayers() {
     final rand = Random();
 
     final player1 = players[rand.nextInt(players.length)];
@@ -70,13 +50,18 @@ class Backend {
   }
 
   Card getNextCard() {
-    final rand = Random();
-    final players = getPlayers();
-    var card = Card(cards[rand.nextInt(cards.length)], players);
+    final List<Player> players = getRandomPlayers();
+
+    Card originalCard = cards[rand.nextInt(cards.length)];
+    bool punishment = false;
+
     if (players[0].failedCards > 5) {
-      card = Card(punishCards[rand.nextInt(punishCards.length)], players);
+      originalCard = punishCards[rand.nextInt(punishCards.length)];
       players[0].failedCards = 0;
+      punishment = true;
     }
-    return card;
+
+    return Card.withPlayers(
+        originalCard.emoji, originalCard.text, players, punishment);
   }
 }

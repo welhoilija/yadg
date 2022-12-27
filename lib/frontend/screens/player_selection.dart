@@ -14,7 +14,7 @@ class PlayerSelection extends StatefulWidget {
 
 class _PlayerSelectionState extends State<PlayerSelection> {
   late TextEditingController _controller;
-  var players = ["Hanki"];
+  List<String> players = [];
 
   @override
   void initState() {
@@ -42,14 +42,15 @@ class _PlayerSelectionState extends State<PlayerSelection> {
   }
 
   void startGame() {
-    // TODO: Need at least 2 players
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => const GameView(
-            backend: Backend(players),
-          ),
-        ));
+    if (players.length > 1) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => GameView(
+              backend: Backend(players),
+            ),
+          ));
+    }
   }
 
   @override

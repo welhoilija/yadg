@@ -13,19 +13,25 @@ class GameView extends StatefulWidget {
 }
 
 class _GameViewState extends State<GameView> {
-  final Card _currentCard = widget.backend.getRandomCard();
+  late Card _currentCard;
+
+  @override
+  void initState() {
+    _currentCard = widget.backend.getNextCard();
+    super.initState();
+  }
 
   void fail() {
     setState(() {
-      _currentCard.fail();
-      _currentCard = widget.backend.getRandomCard();
+      _currentCard.failCard();
+      _currentCard = widget.backend.getNextCard();
     });
   }
 
-  void next() {
+  void pass() {
     setState(() {
-      _currentCard.pass();
-      _currentCard = widget.backend.getRandomCard();
+      _currentCard.successCard();
+      _currentCard = widget.backend.getNextCard();
     });
   }
 
@@ -37,7 +43,10 @@ class _GameViewState extends State<GameView> {
         children: [
           Container(), // To align CardWidget to center
           CardWidget(card: _currentCard),
-          const ButtonRow()
+          ButtonRow(
+            fail: fail,
+            pass: pass,
+          )
         ],
       ),
     );
@@ -81,7 +90,10 @@ class CardWidget extends StatelessWidget {
 }
 
 class ButtonRow extends StatefulWidget {
-  const ButtonRow({super.key});
+  final Function fail;
+  final Function pass;
+
+  const ButtonRow({super.key, required this.fail, required this.pass});
 
   @override
   State<ButtonRow> createState() => _ButtonRowState();
@@ -94,14 +106,16 @@ class _ButtonRowState extends State<ButtonRow> {
       padding: const EdgeInsets.only(left: 12.0, right: 12, bottom: 12),
       child: Row(
         children: [
-          const CustomOutlineButton(
+          CustomOutlineButton(
             text: "FAIL",
             color: Colors.red,
+            onPressed: () => widget.fail(),
           ),
           Container(width: 12),
-          const CustomOutlineButton(
+          CustomOutlineButton(
             text: "NEXT",
             color: Colors.green,
+            onPressed: () => widget.pass(),
           ),
         ],
       ),
