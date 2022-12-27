@@ -14,11 +14,11 @@ class Card {
     emoji = json['emoji'];
     text = json['text'];
 
-    player1 = players[rand.nextInt(players.length)];
-    player2 = players[rand.nextInt(players.length)];
+    player1 = getRandomPlayer(players);
+    player2 = getRandomPlayer(players);
 
-    if (player2 != null && player1 == player2) {
-      player2 = players[(players.indexOf(player1) + 1) % players.length];
+    while (player1 == player2) {
+      player2 = getRandomPlayer(players);
     }
   }
 
@@ -30,4 +30,7 @@ class Card {
 
     return modifiedText.replaceAll('{amount}', rand.nextInt(5).toString());
   }
+
+  Player getRandomPlayer(List<Player> players) =>
+      players[rand.nextInt(players.length)];
 }
