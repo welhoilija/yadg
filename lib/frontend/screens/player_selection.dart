@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yadg/frontend/screens/GameView.dart';
+import 'package:yadg/frontend/widgets/custom_button.dart';
 import 'package:yadg/frontend/widgets/player_tile.dart';
 import 'package:yadg/frontend/widgets/title.dart';
 
@@ -39,7 +41,11 @@ class _PlayerSelectionState extends State<PlayerSelection> {
   }
 
   void startGame() {
-    print("asd");
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (ctx) => const GameView(),
+        ));
   }
 
   @override
@@ -76,13 +82,9 @@ class _PlayerSelectionState extends State<PlayerSelection> {
               ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: ElevatedButton(
+                child: CustomButton(
                   onPressed: () => startGame(),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  child: const Text("Aloita peli 🍻"),
+                  text: "Aloita peli 🍻",
                 ),
               )
             ],
