@@ -12,5 +12,15 @@ List<Card> getPunishCards() => [
       Card("🍻",
           "Rangaistuksena useista epäonnistuneista korteista, pelaaja {player} noutaa pöytään täydennystä."),
       Card("🍻",
-          "Rangaistuksena useista epäonnistuneista korteista, pelaaja {player} Juo juomansa loppuun.")
+          "Rangaistuksena useista epäonnistuneista korteista, pelaaja {player} Juo juomansa loppuun."),
+      Card("🍻",
+          "Rangaistuksena useista epäonnistuneista korteista, pelaaja {player} joutuu juomaan muiden hänelle tekemän juoman."),
+      Card("🍻",
+          "Rangaistuksena useista epäonnistuneista korteista, pelaaja {player} Juo shotti valitsemaasi viinaa."),
+      Card("🍻",
+          "Rangaistuksena useista epäonnistuneista korteista, pelaaja {player} kerro kasku."),
+      Card("🍻",
+          "{player}, olet nähtävästi juonut muutaman liikaa koska tehtävät eivät onnistu. Juo lasi vettä."),
+      Card("🍻",
+          "{player}, rangaistuksena epäonnistuneista korteista, sinun tulee kuvailla viimeistä intiimiä kanssakäymistäsi yhdellä sanalla")
     ];
