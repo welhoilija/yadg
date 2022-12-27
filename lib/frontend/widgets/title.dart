@@ -5,11 +5,11 @@ class CustomTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      "Pelaajat",
-      style: TextStyle(
-        fontSize: 40,
-        color: Colors.red,
+    return const Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Text(
+        "Pelaajat",
+        style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
       ),
     );
   }

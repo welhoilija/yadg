@@ -52,6 +52,10 @@
 		"text": "{player} keksii kategorian ja sanoo siihen kuuluvan asian. Seuraava pelaaja jatkaa, se kuka ei enää keksi tai sanoo saman asian ottaa {amount} hörppyä."
 	},
 	{
+		"emoji": "🎮",
+		"text": "Kategoria: videopelit! {player} aloittaa ja sanoo yhden videopelin. Seuraava pelaaja jatkaa, se kuka ei enää keksi tai sanoo saman asian ottaa {amount} hörppyä."
+	},
+	{
 		"emoji": "🧑🏿‍⚖️",
 		"text": "{player} saa päättää säännön, joka on koko loppupelin ajan voimassa. Sääntöä rikkoessaan joutuu juomaan {amount}."
 	},
