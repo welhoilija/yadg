@@ -38,5 +38,8 @@ class Card {
 
   void successCard() {
     player1.successfulCards++;
+    if (text.contains('{player2}')) {
+      player2?.failedCards++;
+    }
   }
 }
