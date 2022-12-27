@@ -13,12 +13,9 @@ class Card {
   Card(Map<String, dynamic> json, List<Player> players) {
     emoji = json['emoji'];
     text = json['text'];
-
-    player1 = players[rand.nextInt(players.length)];
-    player2 = players[rand.nextInt(players.length)];
-
-    if (player2 != null && player1 == player2) {
-      player2 = players[(players.indexOf(player1) + 1) % players.length];
+    player1 = players[0];
+    if (players.length > 1) {
+      player2 = players[1];
     }
   }
 
@@ -30,4 +27,8 @@ class Card {
 
     return modifiedText.replaceAll('{amount}', rand.nextInt(5).toString());
   }
+
+  void failCard() {}
+
+  void successCard() {}
 }

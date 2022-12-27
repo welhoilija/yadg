@@ -5,37 +5,22 @@ import 'dart:math';
 import 'card.dart';
 import 'player.dart';
 
-void main() {
-  Backend backend = Backend(
-      [Player("BÄLE"), Player("HANKI"), Player("TUPE"), Player("IIGGAZ")]);
-  backend.players[0].failCard();
-  backend.players[0].failCard();
-  backend.players[0].failCard();
-  backend.players[0].failCard();
-  backend.players[0].failCard();
-  backend.players[1].failCard();
-  backend.players[1].failCard();
-  backend.players[1].failCard();
-  backend.players[1].failCard();
-  print(backend.getRandomCard(backend.players).getFormattedText());
-  print(backend.getCardCounts(backend.players));
-}
+void main() {}
 
 class Backend {
   // Add players with this
 
   late List<Player> players;
   late List<dynamic> cards;
+  late List<dynamic> punishCards;
   Backend(this.players) {
     fetchCards();
+    fetchPunishCards();
   }
-
-  // Path to the JSON file
-  final String _path = './cards.json';
 
   // Function to fetch the JSON file
   void fetchCards() {
-    final file = File(_path);
+    final file = File('./cards.json');
     if (file.existsSync()) {
       final contents = file.readAsStringSync();
       cards = jsonDecode(contents);
@@ -44,8 +29,19 @@ class Backend {
     }
   }
 
-  Card getRandomCard(List<Player> players) {
+  void fetchPunishCards() {
+    final file = File('./punishcards.json');
+    if (file.existsSync()) {
+      final contents = file.readAsStringSync();
+      punishCards = jsonDecode(contents);
+    } else {
+      throw Exception('Cards file not found');
+    }
+  }
+
+  Card getRandomCard(List<Player> json) {
     final rand = Random();
+    final players = getPlayers();
     final card = Card(cards[rand.nextInt(cards.length)], players);
 
     return card;
@@ -60,5 +56,30 @@ class Backend {
       };
     }
     return counts;
+  }
+
+  List<Player> getPlayers() {
+    final rand = Random();
+    final player1 = players[rand.nextInt(players.length)];
+    final player2Index = rand.nextInt(players.length);
+    var player2 = players[player2Index];
+
+    // Ensure that player1 and player2 are different
+    if (player1 == player2) {
+      player2 = players[(player2Index + 1) % players.length];
+    }
+
+    return [player1, player2];
+  }
+
+  Card getNextCard(List<Player> json) {
+    final rand = Random();
+    final players = getPlayers();
+    var card = Card(cards[rand.nextInt(cards.length)], players);
+    if (players[0].failedCards > 5) {
+      card = Card(punishCards[rand.nextInt(punishCards.length)], players);
+      players[0].failedCards = 0;
+    }
+    return card;
   }
 }
