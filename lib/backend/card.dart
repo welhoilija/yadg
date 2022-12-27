@@ -13,9 +13,11 @@ class Card {
   Card(Map<String, dynamic> json, List<Player> players) {
     emoji = json['emoji'];
     text = json['text'];
+
     player1 = players[0];
     if (players.length > 1) {
       player2 = players[1];
+
     }
   }
 
@@ -31,4 +33,5 @@ class Card {
   void failCard() {}
 
   void successCard() {}
+
 }

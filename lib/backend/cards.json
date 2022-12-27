@@ -74,5 +74,9 @@
 	{
 		"emoji": "🎶",
 		"text": "{player} on nyt DJ ja saa päättää biisit!"
+	},
+	{
+		"emoji": "📱",
+		"text": "Pelaaja kuka on käyttänyt puhelinta eniten pelin aikana, sammuttaa puhelimen ja ottaa {amount} hörppyä."
 	}
 ]
