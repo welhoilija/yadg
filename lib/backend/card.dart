@@ -29,8 +29,8 @@ class Card {
     if (modifiedText.contains('{player2}') && (player2 != null)) {
       modifiedText = modifiedText.replaceAll('{player2}', player2!.name);
     }
-
-    return modifiedText.replaceAll('{amount}', rand.nextInt(5).toString());
+    int amount = rand.nextInt(4) + 1;
+    return modifiedText.replaceAll('{amount}', amount.toString());
   }
 
   void failCard() {
