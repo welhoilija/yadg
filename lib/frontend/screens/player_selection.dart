@@ -38,6 +38,10 @@ class _PlayerSelectionState extends State<PlayerSelection> {
     });
   }
 
+  void startGame() {
+    print("asd");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +64,7 @@ class _PlayerSelectionState extends State<PlayerSelection> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextField(
                   controller: _controller,
                   decoration: const InputDecoration(
@@ -68,6 +72,17 @@ class _PlayerSelectionState extends State<PlayerSelection> {
                     labelText: 'Lisää pelaaja',
                   ),
                   onSubmitted: (String str) => addPlayer(str),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: ElevatedButton(
+                  onPressed: () => startGame(),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  child: const Text("Aloita peli 🍻"),
                 ),
               )
             ],
