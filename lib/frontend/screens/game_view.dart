@@ -1,14 +1,34 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Card;
+import 'package:yadg/backend/backend.dart';
+import 'package:yadg/backend/card.dart';
 import 'package:yadg/frontend/widgets/custom_outline_button.dart';
 
 class GameView extends StatefulWidget {
-  const GameView({super.key});
+  final Backend backend;
+
+  const GameView({super.key, required this.backend});
 
   @override
   State<GameView> createState() => _GameViewState();
 }
 
 class _GameViewState extends State<GameView> {
+  final Card _currentCard = widget.backend.getRandomCard();
+
+  void fail() {
+    setState(() {
+      _currentCard.fail();
+      _currentCard = widget.backend.getRandomCard();
+    });
+  }
+
+  void next() {
+    setState(() {
+      _currentCard.pass();
+      _currentCard = widget.backend.getRandomCard();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +36,7 @@ class _GameViewState extends State<GameView> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(), // To align CardWidget to center
-          const CardWidget(),
+          CardWidget(card: _currentCard),
           const ButtonRow()
         ],
       ),
@@ -25,7 +45,9 @@ class _GameViewState extends State<GameView> {
 }
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({super.key});
+  final Card card;
+
+  const CardWidget({super.key, required this.card});
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +56,19 @@ class CardWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           Text(
-            "🤔",
-            style: TextStyle(
+            card.emoji,
+            style: const TextStyle(
               fontSize: 64,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: Text(
-              "Aloittakaa peli antamalla pelaajalle Iikka 4 hörppyä.",
+              card.getFormattedText(),
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yadg/frontend/screens/GameView.dart';
+import 'package:yadg/backend/backend.dart';
+import 'package:yadg/frontend/screens/game_view.dart';
 import 'package:yadg/frontend/widgets/custom_button.dart';
 import 'package:yadg/frontend/widgets/player_tile.dart';
 import 'package:yadg/frontend/widgets/title.dart';
@@ -41,10 +42,13 @@ class _PlayerSelectionState extends State<PlayerSelection> {
   }
 
   void startGame() {
+    // TODO: Need at least 2 players
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (ctx) => const GameView(),
+          builder: (ctx) => const GameView(
+            backend: Backend(players),
+          ),
         ));
   }
 
