@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yadg/frontend/screens/select_players.dart';
+import 'package:yadg/frontend/screens/player_selection.dart';
 
 void main() {
   runApp(const MyApp());
