@@ -1,6 +1,6 @@
 # yadg
 
-A new Flutter project.
+Yet Another Drinking Game - one day hackathon project by [welhoilija](https://github.com/welhoilija/) and [Steellow](https://github.com/Steellow). Made with Flutter 💙
 
 ## Cards
 
