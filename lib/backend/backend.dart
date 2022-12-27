@@ -8,7 +8,7 @@ import 'player.dart';
 void main() {
   Backend backend = Backend(
       [Player("BÄLE"), Player("HANKI"), Player("TUPE"), Player("IIGGAZ")]);
-  print(backend.getCardCounts());
+  print(backend.getNextCard());
 }
 
 class Backend {
@@ -56,13 +56,13 @@ class Backend {
 
   List<Player> getPlayers() {
     final rand = Random();
+
     final player1 = players[rand.nextInt(players.length)];
-    final player2Index = rand.nextInt(players.length);
-    var player2 = players[player2Index];
+    var player2 = players[rand.nextInt(players.length)];
 
     // Ensure that player1 and player2 are different
-    if (player1 == player2) {
-      player2 = players[(player2Index + 1) % players.length];
+    while (player1 == player2) {
+      player2 = players[rand.nextInt(players.length)];
     }
 
     return [player1, player2];
