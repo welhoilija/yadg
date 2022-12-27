@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:yadg/backend/card.dart';
+
 void main() {
   Backend backend = Backend(
       [Player("BÄLE"), Player("HANKI"), Player("TUPE"), Player("IIGGAZ")]);
@@ -28,26 +30,11 @@ class Backend {
     }
   }
 
-  String getRandomCard(List<dynamic> cards, List<Player> players) {
+  String getRandomCard(List<dynamic> json, List<Player> players) {
     final rand = Random();
-    final card = cards[rand.nextInt(cards.length)];
-    final text = card['text'];
-    final emoji = card['emoji'];
+    final card = Card(json[rand.nextInt(json.length)], players);
 
-    // Select one or two random players
-    final player1 = players[rand.nextInt(players.length)];
-    final player2 =
-        rand.nextBool() ? players[rand.nextInt(players.length)] : null;
-
-    // Modify the text field
-    String modifiedText = text.replaceAll('{player}', player1.name);
-    if (player2 != null) {
-      modifiedText = modifiedText.replaceAll('{player}', player2.name);
-    }
-    String finalText =
-        modifiedText.replaceAll('{amount}', rand.nextInt(5).toString());
-
-    return '$finalText ' + emoji;
+    return card.getFormattedText();
   }
 
   // Function to return a list of text items from the JSON file
