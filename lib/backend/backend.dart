@@ -5,7 +5,11 @@ import 'dart:math';
 import 'card.dart';
 import 'player.dart';
 
-void main() {}
+void main() {
+  Backend backend = Backend(
+      [Player("BÄLE"), Player("HANKI"), Player("TUPE"), Player("IIGGAZ")]);
+  print(backend.getCardCounts());
+}
 
 class Backend {
   // Add players with this
@@ -39,15 +43,7 @@ class Backend {
     }
   }
 
-  Card getRandomCard(List<Player> json) {
-    final rand = Random();
-    final players = getPlayers();
-    final card = Card(cards[rand.nextInt(cards.length)], players);
-
-    return card;
-  }
-
-  Map<String, Map<String, int>> getCardCounts(List<Player> players) {
+  Map<String, Map<String, int>> getCardCounts() {
     final counts = <String, Map<String, int>>{};
     for (final player in players) {
       counts[player.name] = {
@@ -72,7 +68,7 @@ class Backend {
     return [player1, player2];
   }
 
-  Card getNextCard(List<Player> json) {
+  Card getNextCard() {
     final rand = Random();
     final players = getPlayers();
     var card = Card(cards[rand.nextInt(cards.length)], players);
