@@ -8,7 +8,17 @@ import 'player.dart';
 void main() {
   Backend backend = Backend(
       [Player("BÄLE"), Player("HANKI"), Player("TUPE"), Player("IIGGAZ")]);
-  print(backend.getRandomCard(backend.players));
+  backend.players[0].failCard();
+  backend.players[0].failCard();
+  backend.players[0].failCard();
+  backend.players[0].failCard();
+  backend.players[0].failCard();
+  backend.players[1].failCard();
+  backend.players[1].failCard();
+  backend.players[1].failCard();
+  backend.players[1].failCard();
+  print(backend.getRandomCard(backend.players).getFormattedText());
+  print(backend.getCardCounts(backend.players));
 }
 
 class Backend {
@@ -34,10 +44,21 @@ class Backend {
     }
   }
 
-  String getRandomCard(List<Player> players) {
+  Card getRandomCard(List<Player> players) {
     final rand = Random();
     final card = Card(cards[rand.nextInt(cards.length)], players);
 
-    return card.getFormattedText();
+    return card;
+  }
+
+  Map<String, Map<String, int>> getCardCounts(List<Player> players) {
+    final counts = <String, Map<String, int>>{};
+    for (final player in players) {
+      counts[player.name] = {
+        'failed': player.failedCards,
+        'success': player.successfulCards
+      };
+    }
+    return counts;
   }
 }
