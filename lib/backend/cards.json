@@ -78,5 +78,13 @@
 	{
 		"emoji": "📱",
 		"text": "Pelaaja kuka on käyttänyt puhelinta eniten pelin aikana, sammuttaa puhelimen ja ottaa {amount} hörppyä."
+	},
+	{
+		"emoji": "📸",
+		"text": "Ottakaa yhteiskuva!"
+	},
+	{
+		"emoji": "🌆",
+		"text": "{player} näyttää puhelimestaan 5 uusinta kuvaa."
 	}
 ]
