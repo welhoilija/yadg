@@ -13,7 +13,7 @@
 	},
 	{
 		"emoji": "🔥",
-		"text": "Kaikki osoittaa pelaaja kellä on leijoin fit. Voittaja saa jakaa {amount} hörppyä."
+		"text": "Kaikki osoittaa pelaaja kellä on leijoin fitti. Voittaja saa jakaa {amount} hörppyä."
 	},
 	{
 		"emoji": "☠️",
@@ -62,5 +62,13 @@
 	{
 		"emoji": "🔫",
 		"text": "{player} saa päättää itselleen henkilön, joka joutuu juomaan aina, kun hän juo."
+	},
+	{
+		"emoji": "🪨",
+		"text": "{player} ja {player} pelaa kivi paperi sakset. Häviäjä ottaa {amount} hörppyä."
+	},
+	{
+		"emoji": "🎶",
+		"text": "{player} on nyt DJ ja saa päättää biisit!"
 	}
 ]
