@@ -5,11 +5,11 @@
 	},
 	{
 		"emoji": "🫶",
-		"text": "{player} ja {player} tekee käsillään sydämen ja ottavat hörpyn."
+		"text": "{player} ja {player2} tekee käsillään sydämen ja ottavat hörpyn."
 	},
 	{
 		"emoji": "🎁",
-		"text": "{player} lahjoittaa yhden juoman pelaajalle {player}."
+		"text": "{player} lahjoittaa yhden juoman pelaajalle {player2}."
 	},
 	{
 		"emoji": "🔥",
@@ -21,7 +21,7 @@
 	},
 	{
 		"emoji": "🤥",
-		"text": "{player} kertoo totuuden tai valheen. Pelaajan {player} pitää arvata onko kyseessä valhe vai ei. Mikäli arvaaja on oikeassa, saa antaa {amount} hörppyä. Muuten arvaaja ottaa {amount} hörppyä."
+		"text": "{player} kertoo totuuden tai valheen. Pelaajan {player2} pitää arvata onko kyseessä valhe vai ei. Mikäli arvaaja on oikeassa, saa antaa {amount} hörppyä. Muuten arvaaja ottaa {amount} hörppyä."
 	},
 	{
 		"emoji": "🤯",
