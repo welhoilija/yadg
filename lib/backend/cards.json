@@ -69,7 +69,7 @@
 	},
 	{
 		"emoji": "🪨",
-		"text": "{player} ja {player} pelaa kivi paperi sakset. Häviäjä ottaa {amount} hörppyä."
+		"text": "{player} ja {player2} pelaa kivi paperi sakset. Häviäjä ottaa {amount} hörppyä."
 	},
 	{
 		"emoji": "🎶",
