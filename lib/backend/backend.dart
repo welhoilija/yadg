@@ -5,11 +5,7 @@ import 'dart:math';
 import 'card.dart';
 import 'player.dart';
 
-void main() {
-  Backend backend = Backend(
-      [Player("BÄLE"), Player("HANKI"), Player("TUPE"), Player("IIGGAZ")]);
-  print(backend.getNextCard());
-}
+void main() {}
 
 class Backend {
   // Add players with this
