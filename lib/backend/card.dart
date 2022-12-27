@@ -14,11 +14,10 @@ class Card {
     emoji = json['emoji'];
     text = json['text'];
 
-    player1 = getRandomPlayer(players);
-    player2 = getRandomPlayer(players);
+    player1 = players[0];
+    if (players.length > 1) {
+      player2 = players[1];
 
-    while (player1 == player2) {
-      player2 = getRandomPlayer(players);
     }
   }
 
@@ -31,6 +30,8 @@ class Card {
     return modifiedText.replaceAll('{amount}', rand.nextInt(5).toString());
   }
 
-  Player getRandomPlayer(List<Player> players) =>
-      players[rand.nextInt(players.length)];
+  void failCard() {}
+
+  void successCard() {}
+
 }
