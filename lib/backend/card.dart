@@ -24,10 +24,8 @@ class Card {
 
   String getFormattedText() {
     String modifiedText = text.replaceAll('{player}', player1.name);
-    if (modifiedText.contains('{player2}')) {
-      if (player2 != null) {
-        modifiedText = modifiedText.replaceAll('{player2}', player2!.name);
-      }
+    if (modifiedText.contains('{player2}') && (player2 != null)) {
+      modifiedText = modifiedText.replaceAll('{player2}', player2!.name);
     }
 
     return modifiedText.replaceAll('{amount}', rand.nextInt(5).toString());
