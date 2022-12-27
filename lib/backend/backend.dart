@@ -5,7 +5,10 @@ import 'dart:math';
 import 'card.dart';
 import 'player.dart';
 
-void main() {}
+void main() {
+  Backend backend = Backend(["BÄLE", "HANKI", "TUPE", "IIGGAZ"]);
+  print(backend.getNextCard().getFormattedText());
+}
 
 class Backend {
   // Add players with this
@@ -13,9 +16,11 @@ class Backend {
   late List<Player> players;
   late List<dynamic> cards;
   late List<dynamic> punishCards;
-  Backend(this.players) {
+
+  Backend(List<String> array) {
     fetchCards();
     fetchPunishCards();
+    players = array.map((str) => Player(str)).toList();
   }
 
   // Function to fetch the JSON file
