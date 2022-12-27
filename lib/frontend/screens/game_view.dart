@@ -23,8 +23,16 @@ class _GameViewState extends State<GameView> {
 
   void fail() {
     setState(() {
-      _currentCard.failCard();
-      _currentCard = widget.backend.getNextCard();
+      if (_currentCard.punishment != null && _currentCard.punishment!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Rangaistuskorttia ei voi skipata!"),
+          ),
+        );
+      } else {
+        _currentCard.failCard();
+        _currentCard = widget.backend.getNextCard();
+      }
     });
   }
 
